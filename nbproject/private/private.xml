@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/userAccount/FileOperations.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>22</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/PRO192-code/User_Management/src/Main/MainMenu.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/FileOperation/FileOperations.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Account/UserList.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Account/User.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Account/Manager.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Account/Account.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Account/ManagerList.java</file>
+            <file>file:/D:/PRO192-code/User_Management/src/Boss/Boss.java</file>
+        </group>
+    </open-files>
+</project-private>
