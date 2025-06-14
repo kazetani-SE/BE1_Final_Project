@@ -19,6 +19,10 @@ public class User extends Account implements Serializable{
     
     public User() {
     }
+
+    public User(String userName, String firstName, String lastName, String password, String phone, String email) {
+        super(userName, firstName, lastName, password, phone, email);
+    }
     
     public boolean checkExist(List<User> user, Function<User, String> getter, String exist){
         return user.stream().anyMatch(u -> getter.apply(u).equals(exist));

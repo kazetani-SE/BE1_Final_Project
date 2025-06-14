@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Main;
-
-import Account.Manager;
 import Account.ManagerList;
 import Account.UserList;
 import Boss.Boss;
@@ -81,11 +79,11 @@ public class MainMenu {
         System.out.println("2. Update account information");
         System.out.println("3. Delete account");
         System.out.println("--For Manager--");
-        System.out.println("4. Print user list");
+        System.out.println("4. Print user ```list");
         System.out.println("5. Check user exist");
         System.out.println("6. Find user by name");
         System.out.println("--For boss--");
-        System.out.println("7. Add manager to list");
+        System.out.println("7. Create new manager");
         System.out.println("8. Print manager list");
         System.out.println("0. Exit");
         System.out.print("Enter your choice (0-8): ");

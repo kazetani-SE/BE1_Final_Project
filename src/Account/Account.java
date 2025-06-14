@@ -19,6 +19,18 @@ public abstract class Account implements Serializable{
     String password;
     String phone;
     String email;
+
+    public Account() {
+    }
+
+    public Account(String userName, String firstName, String lastName, String password, String phone, String email) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+    }
     
     public boolean confirmPass(String pass, String password){
         return pass.equals(password);

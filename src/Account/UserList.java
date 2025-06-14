@@ -5,10 +5,12 @@
  */
 package Account;
 
+import FakeData.FakeData;
 import java.util.ArrayList;
 import java.util.Scanner;
 import FileOperation.FileOperations;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 //import java.util.List;
@@ -28,6 +30,22 @@ public class UserList extends ArrayList<User>{
     public UserList() throws Exception{
         this.clear();
         this.addAll(acting.readFromUser());
+        if(this.isEmpty()){
+            FakeData fakeData = new FakeData();
+            for(int i = 0; i < 10; i++){
+                String fakeFistName = fakeData.fakeFistName();
+                String fakeLastName = fakeData.fakeLastName();
+                autoFakeUser(fakeData.fakeUserName(), fakeFistName, fakeLastName,
+                             fakeData.fakePass(), fakeData.fakePhone(),
+                             fakeData.fakeEmail(fakeLastName, fakeFistName));
+            }
+        }
+    }
+
+    public void autoFakeUser(String userName, String firstName, String lastName, 
+                            String password, String phone, String email) throws Exception{
+        User user = new User(userName, firstName, lastName, password, phone, email);
+        addUserToUser(user);
     }
     
     public void addUser() throws IOException, Exception{
