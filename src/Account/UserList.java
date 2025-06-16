@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import FileOperation.FileOperations;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 //import java.util.List;
@@ -21,6 +20,9 @@ import java.util.Comparator;
  */
 public class UserList extends ArrayList<User>{
     //private User user = new User();
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String RED = "\033[0;31m";
+    public static final String GREEN = "\033[0;32m";
     transient private FileOperations acting = new FileOperations();
     private static final long serialVersionUID = 85837684L;
     transient private int posi;
@@ -59,15 +61,13 @@ public class UserList extends ArrayList<User>{
         Thread inputThread = new Thread(() -> {
             try {
                 if(this.size() > 0 && this.get(this.size()-1).getUserName().equals(user.deleted)) {
-                    System.out.println("Create by replacing");
                     replace(this.size()-1, user);
                 }
                 else {
-                    System.out.println("Create by adding");
                     addUserToUser(user);
                 }
             } catch (Exception ex) {
-                System.out.println("Account created failed!");
+                System.out.println(RED + "\nAccount created failed!" + ANSI_RESET);
                 ex.printStackTrace();
             }
         });
@@ -78,7 +78,6 @@ public class UserList extends ArrayList<User>{
         this.add(user);
         Collections.sort(this, Comparator.comparing(User::getUserName));
         acting.addToUser(this);
-        System.out.println("Account created successfully!");
     }
     
     public void updateUserInfor() throws Exception{
@@ -91,7 +90,7 @@ public class UserList extends ArrayList<User>{
             try {
                 replace(posi, user);
             } catch (Exception ex) {
-                System.out.println("Account update failed!");
+                System.out.println(RED + "\nAccount update failed!" + ANSI_RESET);
             }
         });
         updateThread.start();
@@ -110,13 +109,13 @@ public class UserList extends ArrayList<User>{
                 try {
                     user.setUserName(user.deleted);
                     replace(posi, user);
-                    System.out.println("Account deleted successfully.");
+                    System.out.println(GREEN + "\nAccount deleted successfully." + ANSI_RESET);
                 } catch (Exception ex) {
-                    System.out.println("Account deletion failed!");
+                    System.out.println(RED + "\nAccount deletion failed!" + ANSI_RESET);
                 }
                 break;
             default:
-                System.out.println("Deletion request has been canceled.");
+                System.out.println(RED + "Deletion request has been canceled." + ANSI_RESET);
         }
     }
     
@@ -127,7 +126,7 @@ public class UserList extends ArrayList<User>{
             medium = scn.nextLine();
             if(!user.checkUserName(medium)) System.out.println("Invalid user name, please try again!");
             if(user.checkExist(this, User::getUserName, medium)) 
-               System.out.println("This user name has been used, please use another!");
+               System.out.println(RED + "This user name has been used, please use another!" + ANSI_RESET);
         }while(!user.checkUserName(medium) || user.checkExist(this, User::getUserName, medium));
         user.setUserName(medium);
     }
@@ -148,13 +147,13 @@ public class UserList extends ArrayList<User>{
         do{
             System.out.print("Enter the password: ");
             medium = scn.nextLine();
-            if(!user.checkPass(medium)) System.out.println("Invalid password, please try again!");
+            if(!user.checkPass(medium)) System.out.println(RED + "Invalid password, please try again!" + ANSI_RESET);
         }while(!user.checkPass(medium));
         
         do{
             System.out.print("Please confirm your password: ");
             mediumCheck = scn.nextLine();
-            if(!user.confirmPass(mediumCheck, medium)) System.out.println("Confirm failed, please try again!");
+            if(!user.confirmPass(mediumCheck, medium)) System.out.println(RED + "Confirm failed, please try again!" + ANSI_RESET);
             
         }while(!user.confirmPass(mediumCheck, medium));
         
@@ -166,7 +165,7 @@ public class UserList extends ArrayList<User>{
         do{
             System.out.print("Enter your phone number: ");
             medium = scn.nextLine();
-            if(!user.checkPhone(medium)) System.out.println("Invalid phone number, please try again!");
+            if(!user.checkPhone(medium)) System.out.println(RED + "Invalid phone number, please try again!" + ANSI_RESET);
         }while(!user.checkPhone(medium));
         user.setPhone(medium);
     }
@@ -178,7 +177,7 @@ public class UserList extends ArrayList<User>{
             medium = scn.nextLine();
             if(!user.checkEmailFormat(medium)) System.out.println("Invalid email, please try again!");
             if(user.checkExist(this, User::getEmail, medium))
-                System.out.println("This email has been used, please use another!");
+                System.out.println(RED + "This email has been used, please use another!" + ANSI_RESET);
         }while(!user.checkEmailFormat(medium) || user.checkExist(this, User::getEmail, medium));
         user.setEmail(medium);
     }
@@ -222,7 +221,7 @@ public class UserList extends ArrayList<User>{
                     System.out.println("Exiting...");
                     break;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println(RED + "Invalid choice, please try again." + ANSI_RESET);
                     break;
                 }
             
@@ -242,10 +241,10 @@ public class UserList extends ArrayList<User>{
             if(posi >= 0){
                 user = this.get(posi);
                 if(user.getPassword().equals(pass)){
-                    System.out.println("Login successfull!");
+                    System.out.println(GREEN + "Login successfull!" + ANSI_RESET);
                 }
             }else
-                System.out.println("Failed, please try again!");
+                System.out.println(RED + "Failed, please try again!" + ANSI_RESET);
         }while(posi<0);
         return user;
     }
@@ -262,6 +261,5 @@ public class UserList extends ArrayList<User>{
         this.set(posi, user);
         Collections.sort(this, Comparator.comparing(User::getUserName));
         acting.addToUser(this);  
-        System.out.println("Successfully!");
     }
 }

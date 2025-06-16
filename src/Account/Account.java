@@ -6,6 +6,7 @@
 package Account;
 
 import java.io.Serializable;
+import java.util.regex.*;
 /**
  *
  * @author User
@@ -37,7 +38,8 @@ public abstract class Account implements Serializable{
     }
     
     public boolean checkEmailFormat(String email){
-        return email.contains("@") && email.contains(".") && !email.contains(" ");
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z.]+\\.[a-zA-Z]{2,}$";
+        return email.matches(regex);
     }
     
     public boolean checkUserName(String userName){
